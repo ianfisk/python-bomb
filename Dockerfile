@@ -13,6 +13,8 @@
 #   of the secret cannot be changed even if changing the env-variable value when
 #   building the image.
 # - Update the secret ID to one not previously used => you can change secret value.
+# - OR, run $ docker system prune to clear out the secret cache(?) and then values
+#   can be updated without using a new ID.
 
 FROM wettyoss/wetty:latest
 
@@ -27,9 +29,9 @@ RUN --mount=type=secret,id=student_pw \
 		echo "student:$(echo $STUDENT_PW)" | chpasswd
 
 COPY ./.profile /home/student/.profile
-
 COPY ./pyc2bytecode.py /home/student/pyc2bytecode.py
 COPY ./bomb.py /home/student/bomb.py
+
 RUN python3 -m py_compile /home/student/bomb.py && \
 		mv /home/student/__pycache__/bomb*.pyc /home/student/bomb.pyc && \
 		rm -rf /home/student/bomb.py /home/student/__pycache__

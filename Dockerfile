@@ -1,4 +1,5 @@
-# Build: WETTY_PW=????? docker build -t web-terminal --label wetty --secret id=student_pw,env=WETTY_PW .
+# Build and create a new secret: WETTY_PW=????? docker build -t web-terminal --label wetty --secret id=student_pw,env=WETTY_PW .
+# After the secret is created, docker build -t web-terminal --label wetty . is sufficient because the secret can't be changed.
 # Run: docker run -p 3000:3000 web-terminal
 # List container IDs: docker ps --filter label=wetty --format "{{.ID}}"
 # Stop running container(s): docker stop $(docker ps --filter label=wetty --format "{{.ID}}")
@@ -11,7 +12,7 @@
 # - As long as the **same** secret ID is used (e.g., "student_pw"), the value
 #   of the secret cannot be changed even if changing the env-variable value when
 #   building the image.
-# - Update the secret ID to something else => you can change secret value.
+# - Update the secret ID to one not previously used => you can change secret value.
 
 FROM wettyoss/wetty:latest
 

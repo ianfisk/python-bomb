@@ -18,7 +18,7 @@ def phase_2(user_input):
             explode("Phase 2 failed. Expected 3 numbers.")
 
         a, b, c = numbers
-        if a + b + c != 42 or a * b * c != 3150:
+        if a + b + c != 42 or a * b * c != 2744:
             explode("Phase 2 failed. The numbers are not what I expected...")
     except ValueError:
         explode("Phase 2 failed. Invalid number format.")

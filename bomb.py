@@ -29,7 +29,9 @@ def phase_3(user_input):
     correct_password = "encrypted_password"
     key = 5
 
-    encrypted_input = "".join([chr(ord(c) + key) for c in user_input.strip()])
+    encrypted_input = ""
+    for ch in user_input.strip():
+        encrypted_input += chr(ord(ch) + key)
 
     if encrypted_input != correct_password:
         explode("Phase 3 failed. Incorrect password.")
